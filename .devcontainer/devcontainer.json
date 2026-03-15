@@ -1,0 +1,28 @@
+{
+  "name": "React Node Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20", 
+  "features": {
+    "git": "latest"
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "ms-vscode.vscode-typescript-next",
+        "dsznajder.es7-react-js-snippets",
+        "rodrigovallades.es7-react-js-snippets",
+        "burkeholland.simple-react-snippets"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.autoSave": "afterDelay"
+      }
+    }
+  },
+  "forwardPorts": [3000],
+  "remoteUser": "node",
+  "workspaceFolder": "/workspace"
+}
