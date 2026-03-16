@@ -1,33 +1,32 @@
-import React from "react";
-import TOdotask from "./components/TOdotask";
+import TOdotask from "./components/Todotask";
 import Taskbar from "./components/Taskbar";
+import Header from "./components/Header";
+import { useState } from "react";
 
 const App = () => {
+  const [todos, setTodos] = useState([
+    { id: 1, text: "Learn React", completed: false },
+    { id: 2, text: "Learn Python", completed: true },
+    { id: 3, text: "Learn JavaScript", completed: false },
+    { id: 4, text: "Learn .Net", completed: true },
+  ]);
+  function onAdd(text) {
+    const newTodo = {
+      id: Date.now(),
+      text: text,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
+  }
+  function handleDelete(id) {
+    const updateTodo = todos.filter((todos) => todos.id != id);
+    setTodos(updateTodo);
+  }
   return (
     <div className="flex justify-center flex-col items-center">
-      <span className="mt-10 flex items-center gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-calendar-check-icon lucide-calendar-check"
-        >
-          <path d="M8 2v4" />
-          <path d="M16 2v4" />
-          <rect width="18" height="18" x="3" y="4" rx="2" />
-          <path d="M3 10h18" />
-          <path d="m9 16 2 2 4-4" />
-        </svg>{" "}
-        <h1 className="text-lg font-bold"> To-Do List</h1>
-      </span>
-      <TOdotask />
-      {/* <Taskbar /> */}
+      <Header title="To Do List" subTitle="Stay organized stay Productive.!" />
+      <TOdotask onAdd={onAdd} />
+      <Taskbar todos={todos} onDelete={handleDelete} />
     </div>
   );
 };
