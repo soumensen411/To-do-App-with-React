@@ -68,13 +68,13 @@ const TodoLists = ({ todos, onDel, onToggle }) => {
               <div className="items-center">{todo.text}</div>
             </div>
 
-            <span>
+            <div>
               {todo.completed ? (
                 <div className="badge badge-soft badge-success">Done</div>
               ) : (
                 <div className="badge badge-soft badge-primary">Pending</div>
               )}
-            </span>
+            </div>
             <button
               className="btn btn-square btn-ghost"
               onClick={() => onDel(todo.id)}

@@ -1,16 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
 const useTodos = () => {
   const [todos, setTodos] = useState(() => {
     const saved = localStorage.getItem("todos");
-    return saved
-      ? JSON.parse(saved)
-      : [
-          { id: 1, text: "herry potter", completed: false },
-          { id: 2, text: "Avenger", completed: true },
-          { id: 3, text: "Fifty Shades of Gray", completed: false },
-          { id: 4, text: "365 Days", completed: true },
-        ];
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
@@ -23,16 +15,16 @@ const useTodos = () => {
       text: text,
       completed: false,
     };
-    setTodos([...todos, newTask]);
+    setTodos((prev) => [...prev, newTask]);
   }
 
   function handleDel(id) {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
   }
 
   function handleToggle(id) {
-    setTodos(
-      todos.map((todo) =>
+    setTodos((prev) =>
+      prev.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo,
       ),
     );
